@@ -8,7 +8,10 @@ namespace ko {
     int create_rtex(t_appdata *adata, std::string id, bool draw_on_window, sf::Vector2u size);
     int rtex_destroy(t_appdata *adata, std::string id);
     int rtex_target_window(t_appdata *adata, std::string id, bool draw_on_window);
-    int rtex_set_clear(t_appdata *adata, std::string id, sf::Color color);
+    int set_rtex_clear(t_appdata *adata, std::string id, sf::Color color);
+    int set_rtex_shader(t_appdata *adata, std::string id, sf::Shader *shader);
+    int set_rtex_blendmode(t_appdata *adata, std::string id, sf::BlendMode mode);
+    const sf::Shader *get_rtex_shader(t_appdata *adata, std::string id);
 }
 
 #endif

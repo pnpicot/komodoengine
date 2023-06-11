@@ -93,7 +93,7 @@ namespace ko {
         return (CODE_SUCCESS);
     }
 
-    int rtex_set_clear(t_appdata *adata, std::string id, sf::Color color)
+    int set_rtex_clear(t_appdata *adata, std::string id, sf::Color color)
     {
         t_rtex *rtex = get_rtex_struct(adata, id);
 
@@ -105,5 +105,45 @@ namespace ko {
         rtex->clear_color = color;
 
         return (CODE_SUCCESS);
+    }
+
+    int set_rtex_shader(t_appdata *adata, std::string id, sf::Shader *shader)
+    {
+        t_rtex *rtex = get_rtex_struct(adata, id);
+
+        if (rtex == NULL) {
+            printf("%s\n", UNKNOWN_ID);
+            return (CODE_FAILURE);
+        }
+
+        rtex->state->shader = shader;
+
+        return (CODE_SUCCESS);
+    }
+
+    int set_rtex_blendmode(t_appdata *adata, std::string id, sf::BlendMode mode)
+    {
+        t_rtex *rtex = get_rtex_struct(adata, id);
+
+        if (rtex == NULL) {
+            printf("%s\n", UNKNOWN_ID);
+            return (CODE_FAILURE);
+        }
+
+        rtex->state->blendMode = mode;
+
+        return (CODE_SUCCESS);
+    }
+
+    const sf::Shader *get_rtex_shader(t_appdata *adata, std::string id)
+    {
+        t_rtex *rtex = get_rtex_struct(adata, id);
+
+        if (rtex == NULL) {
+            printf("%s\n", UNKNOWN_ID);
+            return (NULL);
+        }
+
+        return (rtex->state->shader);
     }
 }
