@@ -7,7 +7,10 @@
 #define INVALID_CONFIGURATION "Error: invalid configuration file."
 #define DUPLICATE_CONFIGURATION "Warning: duplicate configuration names (will be ignored)."
 #define DUPLICATE_RTEX "Warning: duplicate render texture id (will be ignored)."
+#define DUPLICATE_SHADER "Error: duplicate shader id."
 #define RTEX_FAIL "Error: couldn't create render texture."
+#define SHADER_FAIL "Error: couldn't create shader."
 #define UNKNOWN_ID "Warning: can't access element (unknown id)."
+#define NO_FILE "Error: no such file or directory."
 
 #endif

@@ -39,6 +39,11 @@ typedef struct t_rtex_t {
     sf::Color clear_color;
 } t_rtex;
 
+typedef struct t_shader_t {
+    std::string id;
+    sf::Shader *shader;
+} t_shader;
+
 typedef struct t_appdata_t {
     std::vector<t_intconf *> config_ints;
     std::vector<t_floatconf *> config_floats;
@@ -50,6 +55,7 @@ typedef struct t_appdata_t {
     sf::Clock *app_clock;
     sf::Clock *runtime_clock;
     std::vector<t_rtex *> render_textures;
+    std::vector<t_shader *> shaders;
 } t_appdata;
 
 #endif
