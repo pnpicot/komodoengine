@@ -1,6 +1,9 @@
 # Compiled binaries
 komodoengine
 
+# VSCode
+.vscode/
+
 ##### Windows
 # Windows thumbnail cache files
 Thumbs.db
@@ -586,8 +589,6 @@ mono_crash.*
 x64/
 x86/
 [Ww][Ii][Nn]32/
-[Aa][Rr][Mm]/
-[Aa][Rr][Mm]64/
 bld/
 [Bb]in/
 [Oo]bj/
@@ -944,7 +945,6 @@ CMakeCache.txt
 CMakeFiles
 CMakeScripts
 Testing
-Makefile
 cmake_install.cmake
 install_manifest.txt
 compile_commands.json
