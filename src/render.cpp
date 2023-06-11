@@ -23,6 +23,8 @@ namespace ko {
 
             // TODO: draw stuff on render texture
 
+            rtex->texture->display();
+
             sf::Texture texture = rtex->texture->getTexture();
 
             rtex->sprite->setTexture(texture);
