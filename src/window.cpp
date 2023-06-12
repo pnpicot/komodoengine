@@ -6,6 +6,11 @@
 #include "../include/render.hpp"
 #include "../include/defaults.hpp"
 #include "../include/rect.hpp"
+#include "../include/src_init.hpp"
+#include "../include/src_update.hpp"
+#include "../include/src_render.hpp"
+#include "../include/event.hpp"
+#include "../include/src_event.hpp"
 
 namespace ko {
     static int window_loop(t_appdata *adata)
@@ -21,10 +26,12 @@ namespace ko {
             sf::Event event;
 
             while (window->pollEvent(event)) {
-                if (event.type == sf::Event::Closed) {
-                    window->close();
-                    return (CODE_SUCCESS);
-                }
+                int event_code = register_event(adata, event);
+
+                if (event_code != CODE_SUCCESS)
+                    return (event_code);
+
+                src_register_event(adata, event);
             }
 
             float delta = adata->app_clock->getElapsedTime().asSeconds();
@@ -35,10 +42,14 @@ namespace ko {
                 if (update_code != CODE_SUCCESS)
                     return (update_code);
 
+                src_update(adata);
+
                 int render_code = render(adata);
 
                 if (render_code != CODE_SUCCESS)
                     return (render_code);
+
+                src_render(adata);
 
                 adata->app_clock->restart();
             }
@@ -58,6 +69,8 @@ namespace ko {
 
         window->create(sf::VideoMode(adata->win_w, adata->win_h), "Komodo Engine", sf::Style::Default, context_settings);
         adata->window = window;
+
+        src_init(adata);
 
         int loop_code = window_loop(adata);
 

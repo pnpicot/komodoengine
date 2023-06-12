@@ -72,6 +72,7 @@ typedef struct t_appdata_t {
     std::vector<t_rtex *> render_textures;
     std::vector<t_shader *> shaders;
     std::vector<t_texture *> textures;
+    int keys[25];
 } t_appdata;
 
 #endif
