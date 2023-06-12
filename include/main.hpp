@@ -50,11 +50,17 @@ typedef struct t_sprite_t {
     sf::Sprite *sprite;
 } t_sprite;
 
+typedef struct t_vertex_t {
+    std::string id;
+    sf::VertexArray *array;
+} t_vertex;
+
 typedef struct t_render_t {
     std::vector<t_rect *> rects;
     std::vector<t_circle *> circles;
     std::vector<t_sprite *> sprites;
     std::vector<t_text *> texts;
+    std::vector<t_vertex *> vertex_arrays;
 } t_render;
 
 typedef struct t_rtex_t {

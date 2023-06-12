@@ -35,6 +35,14 @@ namespace ko {
             rtex->texture->draw(*sprite->sprite);
         }
 
+        // Vertex arrays
+
+        std::vector<t_vertex *> vertex_arrays = rtex->render_buffer->vertex_arrays;
+
+        for (auto & array : vertex_arrays) {
+            rtex->texture->draw(*array->array);
+        }
+
         // Texts
 
         std::vector<t_text *> texts = rtex->render_buffer->texts;
