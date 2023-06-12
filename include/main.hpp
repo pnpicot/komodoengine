@@ -30,6 +30,15 @@ typedef struct t_strconf_t {
     std::string value;
 } t_strconf;
 
+typedef struct t_rect_t {
+    std::string id;
+    sf::RectangleShape *rect;
+} t_rect;
+
+typedef struct t_render_t {
+    std::vector<t_rect *> rects;
+} t_render;
+
 typedef struct t_rtex_t {
     std::string id;
     sf::RenderTexture *texture;
@@ -37,12 +46,18 @@ typedef struct t_rtex_t {
     sf::RenderStates *state;
     bool draw_on_window;
     sf::Color clear_color;
+    t_render *render_buffer;
 } t_rtex;
 
 typedef struct t_shader_t {
     std::string id;
     sf::Shader *shader;
 } t_shader;
+
+typedef struct t_texture_t {
+    std::string id;
+    sf::Texture *texture;
+} t_texture;
 
 typedef struct t_appdata_t {
     std::vector<t_intconf *> config_ints;
@@ -56,6 +71,7 @@ typedef struct t_appdata_t {
     sf::Clock *runtime_clock;
     std::vector<t_rtex *> render_textures;
     std::vector<t_shader *> shaders;
+    std::vector<t_texture *> textures;
 } t_appdata;
 
 #endif

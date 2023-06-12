@@ -5,6 +5,7 @@
 #include "../include/update.hpp"
 #include "../include/render.hpp"
 #include "../include/defaults.hpp"
+#include "../include/rect.hpp"
 
 namespace ko {
     static int window_loop(t_appdata *adata)

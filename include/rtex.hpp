@@ -12,6 +12,7 @@ namespace ko {
     int set_rtex_shader(t_appdata *adata, std::string id, sf::Shader *shader);
     int set_rtex_blendmode(t_appdata *adata, std::string id, sf::BlendMode mode);
     const sf::Shader *get_rtex_shader(t_appdata *adata, std::string id);
+    t_rtex *get_rtex_struct(t_appdata *adata, std::string id);
 }
 
 #endif

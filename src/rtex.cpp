@@ -14,7 +14,7 @@ namespace ko {
         return (NULL);
     }
 
-    static t_rtex *get_rtex_struct(t_appdata *adata, std::string id)
+    t_rtex *get_rtex_struct(t_appdata *adata, std::string id)
     {
         std::vector<t_rtex *> render_textures = adata->render_textures;
 
@@ -43,6 +43,7 @@ namespace ko {
         new_rtex->sprite = new sf::Sprite();
         new_rtex->state = new sf::RenderStates();
         new_rtex->clear_color = sf::Color::Black;
+        new_rtex->render_buffer = new t_render();
 
         bool rtex_code = new_rtex->texture->create(size.x, size.y);
 

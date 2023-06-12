@@ -220,8 +220,74 @@ namespace ko {
         return (CODE_SUCCESS);
     }
 
+    sf::Texture *get_texture(t_appdata *adata, std::string id)
+    {
+        std::vector<t_texture *> textures = adata->textures;
+
+        for (auto & texture : textures) {
+            if (texture->id == id)
+                return (texture->texture);
+        }
+
+        return (NULL);
+    }
+
+    static int add_texture(t_appdata *adata, std::vector<std::string> &separation)
+    {
+        sf::Texture *texture = get_texture(adata, separation[0]);
+
+        if (texture != NULL) {
+            printf("%s\n", DUPLICATE_TEXTURE);
+            return (CODE_FAILURE);
+        }
+
+        t_texture *new_texture = new t_texture();
+
+        new_texture->id = separation[0];
+        new_texture->texture = new sf::Texture();
+
+        bool load_code = new_texture->texture->loadFromFile("asset/image/" + separation[1]);
+
+        if (!load_code) {
+            printf("%s\n", NO_FILE);
+            return (CODE_FAILURE);
+        }
+
+        adata->textures.push_back(new_texture);
+
+        return (CODE_SUCCESS);
+    }
+
+    static int load_textures(t_appdata *adata)
+    {
+        std::string config_content = read_file("asset/config/texture.ko");
+        std::vector<std::string> config_lines = str_split(config_content, '\n');
+
+        for (auto & line : config_lines) {
+            if (line[0] == '#' || line[0] == '\0')
+                continue;
+
+            std::vector<std::string> separation = str_split(line, ':');
+
+            if (separation.size() < 2) {
+                printf("%s\n", INVALID_CONFIGURATION);
+                return (CODE_FAILURE);
+            }
+
+            int texture_code = add_texture(adata, separation);
+
+            if (texture_code != CODE_SUCCESS)
+                return (texture_code);
+        }
+
+        return (CODE_SUCCESS);
+    }
+
     int load_assets(t_appdata *adata)
     {
+        sf::Clock exec_time;
+
+        float load_start = exec_time.getElapsedTime().asSeconds();
         int config_code = load_configs(adata);
 
         if (config_code != CODE_SUCCESS)
@@ -231,6 +297,15 @@ namespace ko {
 
         if (shader_code != CODE_SUCCESS)
             return (shader_code);
+
+        int texture_code = load_textures(adata);
+
+        if (texture_code != CODE_SUCCESS)
+            return (texture_code);
+
+        float load_end = exec_time.getElapsedTime().asSeconds();
+
+        printf("[*] Asset loading time : %fs\n", load_end - load_start);
 
         return (CODE_SUCCESS);
     }

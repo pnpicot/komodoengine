@@ -16,15 +16,21 @@ int main(int argc, char **argv)
     t_appdata *adata = new t_appdata();
     int assets_code = ko::load_assets(adata);
 
-    if (assets_code != CODE_SUCCESS)
+    if (assets_code != CODE_SUCCESS) {
+        printf("[*] Exit code : %d\n", assets_code);
         return (assets_code);
+    }
 
     init_appdata(adata);
 
     int window_code = ko::init_window(adata);
 
-    if (window_code != CODE_SUCCESS)
+    if (window_code != CODE_SUCCESS) {
+        printf("[*] Exit code : %d\n", window_code);
         return (window_code);
+    }
+
+    printf("[*] Exit code : %d\n", CODE_SUCCESS);
 
     return (CODE_SUCCESS);
 }

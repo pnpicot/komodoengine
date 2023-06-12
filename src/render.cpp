@@ -9,6 +9,15 @@ namespace ko {
         }
     }
 
+    static void draw_rtex_content(t_rtex *rtex)
+    {
+        std::vector<t_rect *> rectangles = rtex->render_buffer->rects;
+
+        for (auto & rect : rectangles) {
+            rtex->texture->draw(*rect->rect);
+        }
+    }
+
     int render(t_appdata *adata)
     {
         sf::RenderWindow *window = adata->window;
@@ -21,8 +30,7 @@ namespace ko {
         for (size_t i = 0; i < count; i++) {
             t_rtex *rtex = render_textures[i];
 
-            // TODO: draw stuff on render texture
-
+            draw_rtex_content(rtex);
             rtex->texture->display();
 
             sf::Texture texture = rtex->texture->getTexture();
