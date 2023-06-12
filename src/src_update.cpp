@@ -15,6 +15,6 @@ void src_update(t_appdata *adata)
     sf::RenderTexture *main_rtex = ko::get_rtex(adata, MAIN_RTEX);
     sf::View main_view = main_rtex->getView();
 
-    main_view.setCenter(player->position);
+    main_view.setCenter(player->physics.position);
     main_rtex->setView(main_view);
 }

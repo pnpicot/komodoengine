@@ -110,8 +110,17 @@ typedef struct t_appdata_t {
     std::vector<t_shader *> shaders;
     std::vector<t_texture *> textures;
     std::vector<t_font *> fonts;
-    int keys[25];
+    bool keys[25];
     t_gamedata *gamedata;
 } t_appdata;
+
+// Macros
+
+#define MAX(a, b) (a > b ? a : b)
+#define MIN(a, b) (a < b ? a : b)
+#define RANGE(v, min, max) (v < min ? min : (v > max ? max : v))
+#define LERP(a, b, f) (a * (1.0 - f) + (b * f))
+#define F_ABS(a) (a < 0 ? -1 * a : a)
+#define SHORTEST_ANGLE(a, b) ((((b - a) % 360) + 540) % 360) - 180
 
 #endif
