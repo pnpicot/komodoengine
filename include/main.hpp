@@ -40,8 +40,20 @@ typedef struct t_text_t {
     sf::Text *text;
 } t_text;
 
+typedef struct t_circle_t {
+    std::string id;
+    sf::CircleShape *circle;
+} t_circle;
+
+typedef struct t_sprite_t {
+    std::string id;
+    sf::Sprite *sprite;
+} t_sprite;
+
 typedef struct t_render_t {
     std::vector<t_rect *> rects;
+    std::vector<t_circle *> circles;
+    std::vector<t_sprite *> sprites;
     std::vector<t_text *> texts;
 } t_render;
 

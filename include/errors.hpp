@@ -9,6 +9,8 @@
 #define DUPLICATE_RTEX "Warning: duplicate render texture id (will be ignored)."
 #define DUPLICATE_RECT "Warning: duplicate rectangle shape id (will be ignored)."
 #define DUPLICATE_TEXT "Warning: duplicate rectangle shape id (will be ignored)."
+#define DUPLICATE_CIRCLE "Warning: duplicate circle shape id (will be ignored)."
+#define DUPLICATE_SPRITE "Warning: duplicate sprite id (will be ignored)."
 #define DUPLICATE_SHADER "Error: duplicate shader id."
 #define DUPLICATE_TEXTURE "Error: duplicate texture id."
 #define DUPLICATE_FONT "Error: duplicate font it."

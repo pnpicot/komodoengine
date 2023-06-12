@@ -19,6 +19,22 @@ namespace ko {
             rtex->texture->draw(*rect->rect);
         }
 
+        // Circles
+
+        std::vector<t_circle *> circles = rtex->render_buffer->circles;
+
+        for (auto & circle : circles) {
+            rtex->texture->draw(*circle->circle);
+        }
+
+        // Sprites
+
+        std::vector<t_sprite *> sprites = rtex->render_buffer->sprites;
+
+        for (auto & sprite : sprites) {
+            rtex->texture->draw(*sprite->sprite);
+        }
+
         // Texts
 
         std::vector<t_text *> texts = rtex->render_buffer->texts;
