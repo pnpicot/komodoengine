@@ -11,44 +11,61 @@ namespace ko {
 
     static void draw_rtex_content(t_rtex *rtex)
     {
-        // Rectangles
+        for (int layer = rtex->min_layer; layer <= rtex->max_layer; layer++) {
+            // Rectangles
 
-        std::vector<t_rect *> rectangles = rtex->render_buffer->rects;
+            std::vector<t_rect *> rectangles = rtex->render_buffer->rects;
 
-        for (auto & rect : rectangles) {
-            rtex->texture->draw(*rect->rect);
-        }
+            for (auto & rect : rectangles) {
+                if (rect->layer != layer)
+                    continue;
 
-        // Circles
+                rtex->texture->draw(*rect->rect);
+            }
 
-        std::vector<t_circle *> circles = rtex->render_buffer->circles;
+            // Circles
 
-        for (auto & circle : circles) {
-            rtex->texture->draw(*circle->circle);
-        }
+            std::vector<t_circle *> circles = rtex->render_buffer->circles;
 
-        // Sprites
+            for (auto & circle : circles) {
+                if (circle->layer != layer)
+                    continue;
 
-        std::vector<t_sprite *> sprites = rtex->render_buffer->sprites;
+                rtex->texture->draw(*circle->circle);
+            }
 
-        for (auto & sprite : sprites) {
-            rtex->texture->draw(*sprite->sprite);
-        }
+            // Sprites
 
-        // Vertex arrays
+            std::vector<t_sprite *> sprites = rtex->render_buffer->sprites;
 
-        std::vector<t_vertex *> vertex_arrays = rtex->render_buffer->vertex_arrays;
+            for (auto & sprite : sprites) {
+                if (sprite->layer != layer)
+                    continue;
 
-        for (auto & array : vertex_arrays) {
-            rtex->texture->draw(*array->array);
-        }
+                rtex->texture->draw(*sprite->sprite);
+            }
 
-        // Texts
+            // Vertex arrays
 
-        std::vector<t_text *> texts = rtex->render_buffer->texts;
+            std::vector<t_vertex *> vertex_arrays = rtex->render_buffer->vertex_arrays;
 
-        for (auto & text : texts) {
-            rtex->texture->draw(*text->text);
+            for (auto & array : vertex_arrays) {
+                if (array->layer != layer)
+                    continue;
+
+                rtex->texture->draw(*array->array);
+            }
+
+            // Texts
+
+            std::vector<t_text *> texts = rtex->render_buffer->texts;
+
+            for (auto & text : texts) {
+                if (text->layer != layer)
+                    continue;
+
+                rtex->texture->draw(*text->text);
+            }
         }
     }
 

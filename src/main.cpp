@@ -9,6 +9,7 @@ static void init_appdata(t_appdata *adata)
     adata->global_rate = ko::get_float(adata, "GLOBAL_RATE")->value;
     adata->app_clock = new sf::Clock();
     adata->runtime_clock = new sf::Clock();
+    adata->gamedata = new t_gamedata();
 }
 
 int main(int argc, char **argv)

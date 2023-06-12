@@ -5,3 +5,7 @@ int:WIN_H=1080
 int:USE_AA=1
 int:AA_LEVEL=1
 float:GLOBAL_RATE=0.0001f
+
+# GAME CONFIG
+
+float:BAR_HEIGHT=20.0f

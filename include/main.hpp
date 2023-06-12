@@ -12,6 +12,7 @@
 #include <cmath>
 #include <SFML/Graphics.hpp>
 #include "errors.hpp"
+#include "extern/struct.hpp"
 
 // Structures definition
 
@@ -33,26 +34,31 @@ typedef struct t_strconf_t {
 typedef struct t_rect_t {
     std::string id;
     sf::RectangleShape *rect;
+    int layer;
 } t_rect;
 
 typedef struct t_text_t {
     std::string id;
     sf::Text *text;
+    int layer;
 } t_text;
 
 typedef struct t_circle_t {
     std::string id;
     sf::CircleShape *circle;
+    int layer;
 } t_circle;
 
 typedef struct t_sprite_t {
     std::string id;
     sf::Sprite *sprite;
+    int layer;
 } t_sprite;
 
 typedef struct t_vertex_t {
     std::string id;
     sf::VertexArray *array;
+    int layer;
 } t_vertex;
 
 typedef struct t_render_t {
@@ -71,6 +77,8 @@ typedef struct t_rtex_t {
     bool draw_on_window;
     sf::Color clear_color;
     t_render *render_buffer;
+    int min_layer;
+    int max_layer;
 } t_rtex;
 
 typedef struct t_shader_t {
@@ -103,6 +111,7 @@ typedef struct t_appdata_t {
     std::vector<t_texture *> textures;
     std::vector<t_font *> fonts;
     int keys[25];
+    t_gamedata *gamedata;
 } t_appdata;
 
 #endif

@@ -44,6 +44,8 @@ namespace ko {
         new_rtex->state = new sf::RenderStates();
         new_rtex->clear_color = sf::Color::Black;
         new_rtex->render_buffer = new t_render();
+        new_rtex->min_layer = 0;
+        new_rtex->max_layer = 0;
 
         bool rtex_code = new_rtex->texture->create(size.x, size.y);
 
