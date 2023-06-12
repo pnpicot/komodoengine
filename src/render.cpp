@@ -11,10 +11,20 @@ namespace ko {
 
     static void draw_rtex_content(t_rtex *rtex)
     {
+        // Rectangles
+
         std::vector<t_rect *> rectangles = rtex->render_buffer->rects;
 
         for (auto & rect : rectangles) {
             rtex->texture->draw(*rect->rect);
+        }
+
+        // Texts
+
+        std::vector<t_text *> texts = rtex->render_buffer->texts;
+
+        for (auto & text : texts) {
+            rtex->texture->draw(*text->text);
         }
     }
 

@@ -10,6 +10,7 @@ namespace ko {
     int load_assets(t_appdata *adata);
     sf::Shader *get_shader(t_appdata *adata, std::string id);
     sf::Texture *get_texture(t_appdata *adata, std::string id);
+    sf::Font *get_font(t_appdata *adata, std::string id);
 }
 
 #endif

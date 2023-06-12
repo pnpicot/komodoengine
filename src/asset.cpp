@@ -283,6 +283,69 @@ namespace ko {
         return (CODE_SUCCESS);
     }
 
+    sf::Font *get_font(t_appdata *adata, std::string id)
+    {
+        std::vector<t_font *> fonts = adata->fonts;
+
+        for (auto & font : fonts) {
+            if (font->id == id)
+                return (font->font);
+        }
+
+        return (NULL);
+    }
+
+    static int add_font(t_appdata *adata, std::vector<std::string> &separation)
+    {
+        sf::Font *font = get_font(adata, separation[0]);
+
+        if (font != NULL) {
+            printf("%s\n", DUPLICATE_FONT);
+            return (CODE_FAILURE);
+        }
+
+        t_font *new_font = new t_font();
+
+        new_font->id = separation[0];
+        new_font->font = new sf::Font();
+
+        bool load_code = new_font->font->loadFromFile("asset/font/" + separation[1]);
+
+        if (!load_code) {
+            printf("%s\n", NO_FILE);
+            return (CODE_FAILURE);
+        }
+
+        adata->fonts.push_back(new_font);
+
+        return (CODE_SUCCESS);
+    }
+
+    static int load_fonts(t_appdata *adata)
+    {
+        std::string config_content = read_file("asset/config/font.ko");
+        std::vector<std::string> config_lines = str_split(config_content, '\n');
+
+        for (auto & line : config_lines) {
+            if (line[0] == '#' || line[0] == '\0')
+                continue;
+
+            std::vector<std::string> separation = str_split(line, ':');
+
+            if (separation.size() < 2) {
+                printf("%s\n", INVALID_CONFIGURATION);
+                return (CODE_FAILURE);
+            }
+
+            int font_code = add_font(adata, separation);
+
+            if (font_code != CODE_SUCCESS)
+                return (font_code);
+        }
+
+        return (CODE_SUCCESS);
+    }
+
     int load_assets(t_appdata *adata)
     {
         sf::Clock exec_time;
@@ -302,6 +365,11 @@ namespace ko {
 
         if (texture_code != CODE_SUCCESS)
             return (texture_code);
+
+        int font_code = load_fonts(adata);
+
+        if (font_code != CODE_SUCCESS)
+            return (font_code);
 
         float load_end = exec_time.getElapsedTime().asSeconds();
 

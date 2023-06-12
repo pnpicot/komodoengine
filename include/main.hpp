@@ -35,8 +35,14 @@ typedef struct t_rect_t {
     sf::RectangleShape *rect;
 } t_rect;
 
+typedef struct t_text_t {
+    std::string id;
+    sf::Text *text;
+} t_text;
+
 typedef struct t_render_t {
     std::vector<t_rect *> rects;
+    std::vector<t_text *> texts;
 } t_render;
 
 typedef struct t_rtex_t {
@@ -59,6 +65,11 @@ typedef struct t_texture_t {
     sf::Texture *texture;
 } t_texture;
 
+typedef struct t_font_t {
+    std::string id;
+    sf::Font *font;
+} t_font;
+
 typedef struct t_appdata_t {
     std::vector<t_intconf *> config_ints;
     std::vector<t_floatconf *> config_floats;
@@ -72,6 +83,7 @@ typedef struct t_appdata_t {
     std::vector<t_rtex *> render_textures;
     std::vector<t_shader *> shaders;
     std::vector<t_texture *> textures;
+    std::vector<t_font *> fonts;
     int keys[25];
 } t_appdata;
 
